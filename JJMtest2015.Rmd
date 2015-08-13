@@ -13,8 +13,8 @@ header-includes:
 ---
 
 ```{r setup, cache=FALSE, include=FALSE}
-library(jjmTools)
-library(knitr)
+require(jjmTools)
+require(knitr)
 output <- opts_knit$get("rmarkdown.pandoc.to")
 usingLatex <- (output=="latex") 
 

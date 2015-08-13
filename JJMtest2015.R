@@ -5,7 +5,7 @@ require(jjmTools)
 #runJJM("model2014", path="config", input="input", exec="jjm2014.exe")
 mod2014 = readJJM("model2014", path="config", input="input", version="2014")
 s1 = summary(mod2014)$like
-s1
+
 a = plot(mod2014, what = "biomass", main = "Total Biomass")
 b = plot(mod2014, what = "noFishTB", main = "Unfished Biomass")
 c = plot(mod2014, what = "ssb", main = "Spawning Biomass")
@@ -16,7 +16,7 @@ d = plot(mod2014, what = "ftot", main = "Fishing mortality")
 #runJJM("model2014ms", path="config", input="input", exec="jjm2015.exe")
 mod2014ms = readJJM("model2014ms",  path="config", input="input")
 s2 = summary(mod2014ms)$like
-s2
+
 A = plot(mod2014ms, what = "biomass", main = "")
 B = plot(mod2014ms, what = "noFishTB", main = "")
 C = plot(mod2014ms, what = "ssb", main = "")
@@ -30,5 +30,5 @@ merge(s1,s2, by = "row.names")
 render("JJMtest2015.Rmd", output_dir="report")
 
 #Reports
-#report(mod2014)
-#report(mod2014ms)
+report(mod2014)
+report(mod2014ms)
