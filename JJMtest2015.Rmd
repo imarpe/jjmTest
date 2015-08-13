@@ -54,34 +54,40 @@ tab <- local({
 })
 ```
 
-```{r echo=TRUE, fig.width = 10, fig.height = 12, fig.cap = fig$cap("mod2014", "Comparison plots. Variables: Total Biomass, Unfished Biomass, Spawning Biomass, Fishing Mortality. One stock version (Left), Multistock version (Right)."), fig.pos='h', results='hide', warning=FALSE}
-mod2014 = readJJM("model2014", path="config", input="input", version="2014")
-mod2014ms = readJJM("model2014ms",  path="config", input="input")
 
+```{r echo=TRUE, fig.width = 10, fig.height = 12, fig.cap = fig$cap("mod2014", "Comparison plots. Variables: Total Biomass, Unfished Biomass, Spawning Biomass, Fishing Mortality. One stock version (Left), Multistock version (Right)."), fig.pos='h', results='hide', warning=FALSE}
+# Configuration 2014 (one stock)
+#runJJM("model2014", path="config", input="input", exec="jjm2014.exe")
+mod2014 = readJJM("model2014", path="config", input="input", version="2014")
 a = plot(mod2014, what = "biomass", main = "")
 b = plot(mod2014, what = "noFishTB", main = "")
 c = plot(mod2014, what = "ssb", main = "")
 d = plot(mod2014, what = "ftot", main = "")
 
+#Configuration 2015 (multistock)
+#runJJM("model2014ms", path="config", input="input", exec="jjm2015.exe")
+mod2014ms = readJJM("model2014ms",  path="config", input="input")
 A = plot(mod2014ms, what = "biomass", main = "")
 B = plot(mod2014ms, what = "noFishTB", main = "")
 C = plot(mod2014ms, what = "ssb", main = "")
 D = plot(mod2014ms, what = "ftot", main = "")
 
+#Comparison plot
 grid.arrange(a, A, b, B, c, C, d, D, ncol = 2)
 ```
 
 \newpage
-```{r echo=TRUE, fig.width = 15, fig.height = 16, fig.cap = fig$cap("mod2014ms", "..."), fig.pos='h', results='hide', warning=FALSE}
-mod2014 = readJJM("model2014", path="config", input="input", version="2014")
-mod2014ms = readJJM("model2014ms",  path="config", input="input")
-# Configuration 2014
+```{r echo=TRUE, fig.width = 15, fig.height = 16, fig.cap = fig$cap("mod2014ms", ""), fig.pos='h', warning=FALSE}
+# Configuration 2014 (one stock)
 #runJJM("model2014", path="config", input="input", exec="jjm2014.exe")
-summary(mod2014)$plot
+mod2014 = readJJM("model2014", path="config", input="input", version="2014")
+s1 = summary(mod2014)$like
 
 #Configuration 2015 (multistock)
 #runJJM("model2014ms", path="config", input="input", exec="jjm2015.exe")
-summary(mod2014ms)$plot
+mod2014ms = readJJM("model2014ms",  path="config", input="input")
+s2 = summary(mod2014ms)$like
+
+#Comparison Likelihood table
+merge(s1, s2, by = "row.names")
 ```
-
-
