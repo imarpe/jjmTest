@@ -1,5 +1,7 @@
 # Results files
 results*/
+*.exe
+jjm[0-9]*$
 
 # History files
 .Rhistory
