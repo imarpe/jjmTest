@@ -2,7 +2,7 @@
 require(jjmTools)
 
 # Configuration 2014
-#runJJM("model2014", path="config", input="input", exec="jjm2014.exe")
+runJJM("model2014", path="config", input="input", exec="jjm2014")
 mod2014 = readJJM("model2014", path="config", input="input", version="2014")
 s1 = summary(mod2014)$like
 
@@ -13,7 +13,7 @@ d = plot(mod2014, what = "ftot", main = "Fishing mortality")
 
 
 #Configuration 2015 (multistock)
-#runJJM("model2014ms", path="config", input="input", exec="jjm2015.exe")
+runJJM("model2014ms", path="config", input="input", exec="jjm2015")
 mod2014ms = readJJM("model2014ms",  path="config", input="input")
 s2 = summary(mod2014ms)$like
 
